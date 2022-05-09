@@ -2,6 +2,7 @@ package com.paulaproenca.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.paulaproenca.cursomc.domain.enums.TipoCliente;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

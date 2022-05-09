@@ -17,10 +17,10 @@ public class PedidoResource {
     private PedidoService pedidoService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> buscarPorId(
+    public ResponseEntity<Pedido> buscarPorId(
             @PathVariable Long id
     ) {
-        Pedido pedido = pedidoService.buscarPorId(id);
+        Pedido pedido = pedidoService.findById(id);
         return ResponseEntity.ok().body(pedido);
     }
 }

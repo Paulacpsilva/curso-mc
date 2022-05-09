@@ -14,7 +14,7 @@ public class PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
-    public Pedido buscarPorId(Long id) {
+    public Pedido findById(Long id) {
        Optional<Pedido> pedidoOptional = pedidoRepository.findById(id);
        return pedidoOptional.orElseThrow(() -> new ObjectNotFoundException("Objeto nao encontrado! id:" + id));
     }
