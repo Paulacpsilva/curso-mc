@@ -1,11 +1,15 @@
 package com.paulaproenca.cursomc.services;
 
 import com.paulaproenca.cursomc.domain.Categoria;
+import com.paulaproenca.cursomc.dto.CategoriaDTO;
 import com.paulaproenca.cursomc.repositories.CategoriaRepository;
 import com.paulaproenca.cursomc.services.exceptions.DataIntegrityException;
 import com.paulaproenca.cursomc.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,9 +31,10 @@ public class CategoriaService {
         return categoriaRepository.save(categoria);
     }
 
-    public Categoria update(Categoria categoria) {
-        findById(categoria.getId());
-        return categoriaRepository.save(categoria);
+    public Categoria update(Categoria obj) {
+        Categoria newObj = findById(obj.getId());
+        updateData(newObj, obj);
+        return categoriaRepository.save(newObj);
     }
 
     public void deleteById(Long id) {
@@ -42,6 +47,19 @@ public class CategoriaService {
     }
 
     public List<Categoria>findAll() {
-      return categoriaRepository.findAll();
+       return categoriaRepository.findAll();
+    }
+    
+    public Page<Categoria> findPage(Integer page, Integer linePerPage, String orderby, String direction) {
+        PageRequest pageRequest = PageRequest.of(page, linePerPage, Sort.Direction.valueOf(direction), orderby);
+        return categoriaRepository.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO categoriaDTO){
+        return new Categoria(categoriaDTO.getId(), categoriaDTO.getNome());
+    }
+
+    private void updateData(Categoria newObj, Categoria obj) {
+        newObj.setNome(obj.getNome());
     }
 }

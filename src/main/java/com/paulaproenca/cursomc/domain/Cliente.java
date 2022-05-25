@@ -43,7 +43,13 @@ public class Cliente {
         this.nome = nome;
         this.email = email;
         this.cpfCnpj = cpfCnpj;
-        this.tipoCliente = tipoCliente.getCodigo();
+        this.tipoCliente = (tipoCliente==null) ? null : tipoCliente.getCodigo();
+    }
+
+    public Cliente(Long id, String nome, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
     }
 
     public TipoCliente getTipoCliente() {

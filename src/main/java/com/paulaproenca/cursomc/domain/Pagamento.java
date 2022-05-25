@@ -27,7 +27,7 @@ public abstract class Pagamento {
 
     public Pagamento(Long id, EstadoPagamentoEnum estado, Pedido pedido) {
         this.id = id;
-        this.estado = estado.getCodigo();
+        this.estado = (estado==null) ? null : estado.getCodigo();
         this.pedido = pedido;
     }
 
