@@ -17,6 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +32,7 @@ public class ClienteService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
+    @Transactional
     public Cliente save(Cliente cli) {
         cli.setId(null);
         cli = clienteRepository.save(cli);
@@ -77,7 +80,8 @@ public class ClienteService {
     }
 
     public Cliente fromDTO(ClienteNewDto objtDto) {
-        Cliente cli = new Cliente(null,
+        Cliente cli = new Cliente(
+                null,
                 objtDto.getNome(),
                 objtDto.getEmail(),
                 objtDto.getCpfCnpj(),

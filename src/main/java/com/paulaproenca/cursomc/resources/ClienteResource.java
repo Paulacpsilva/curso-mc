@@ -5,6 +5,7 @@ import com.paulaproenca.cursomc.domain.Cliente;
 import com.paulaproenca.cursomc.dto.CategoriaDTO;
 import com.paulaproenca.cursomc.dto.ClienteDto;
 import com.paulaproenca.cursomc.dto.ClienteNewDto;
+import com.paulaproenca.cursomc.resources.exception.ResourceExceptionHandler;
 import com.paulaproenca.cursomc.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/clientes")
-public class ClienteResource {
+public class ClienteResource extends ResourceExceptionHandler {
 
     @Autowired
     private ClienteService clienteService;

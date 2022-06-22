@@ -1,12 +1,14 @@
 package com.paulaproenca.cursomc.dto;
 
 import com.paulaproenca.cursomc.domain.Cliente;
+import com.paulaproenca.cursomc.services.validation.utils.ClienteUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
+@ClienteUpdate
 @Getter
 @Setter
 @AllArgsConstructor
